@@ -27,7 +27,7 @@ const TableContainer: React.FC<ITableProps & ITableContainerProps> = (
         table = 'shop', data, model,
         ...tableProps
     }
-) => { // for test
+) => {
     const [loading, error, success] = useBooleanSelector(TABLE_ACTION_NAMES(table));
 
     const {shop} = useSelector((store: IAppStore) => store.tables);

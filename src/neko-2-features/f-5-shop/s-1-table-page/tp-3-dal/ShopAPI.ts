@@ -19,12 +19,12 @@ export interface IGetProducts {
 }
 
 export const ShopAPI = {
-    getProducts: async (min: number, max: number, searchName: string, p?: number, pc?: number) => {
+    getProducts: async (min: number, max: number, searchName: string, page?: number, pageCount?: number) => {
         const response = await instance.get<IGetProducts>(
             `/shop?`
             + (max ? `min=${min}&max=${max}&` : '')
             + (searchName.length > 0 ? `productName=${searchName}&` : '')
-            + (p ? `page=${p}&pageCount=${pc}&` : '')
+            + (page ? `page=${page}&pageCount=${pageCount}&` : '')
         );
         return response.data;
     },
