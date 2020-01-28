@@ -3,52 +3,33 @@ import Modal from "../Modal";
 import InputMap, {IInputData} from "./InputMap";
 import {FlexColumnAlignCenterSpaceAround} from "../../../../../neko-3-styles/flex-containers";
 
-interface IModalInput {
-    show: boolean;
-    close: () => void;
+export interface IModalInput {
+    show?: boolean; close?: () => void;
 
-    inputData?: IInputData[];
-    answer?: string;
-    setAnswer?: (answer: string) => void;
+    inputData?: IInputData[]; answer?: string; setAnswer?: (answer: string) => void;
 
-    inputContainerStyles?: CSSProperties;
-    inputStyles?: CSSProperties;
-    buttonStyles?: CSSProperties;
-    button?: ReactNode;
+    inputContainerStyles?: CSSProperties; inputStyles?: CSSProperties; buttonStyles?: CSSProperties; button?: ReactNode;
 
-    enableBackground?: boolean;
-    backgroundStyle?: CSSProperties;
-    backgroundOnClick?: () => void;
+    enableBackground?: boolean; backgroundStyle?: CSSProperties; backgroundOnClick?: () => void;
 
-    width: number;
-    height: number;
-    modalStyle?: CSSProperties;
-    modalOnClick?: () => void;
+    width?: number; height?: number; modalStyle?: CSSProperties; modalOnClick?: () => void;
 }
 
 const ModalInput: React.FC<IModalInput> = (
     {
         inputData,
-        answer,
-        setAnswer = (answer: string) => {},
+        answer, setAnswer = (answer: string) => {},
 
-        inputContainerStyles,
-        inputStyles,
-        buttonStyles,
-        button = 'OK',
+        inputContainerStyles, inputStyles,
+        buttonStyles, button = 'OK',
 
-        enableBackground,
-        backgroundStyle,
+        enableBackground, backgroundStyle,
         backgroundOnClick = () => {},
 
-        width,
-        height,
-        modalStyle,
-        modalOnClick = () => {},
+        width = 100, height = 100,
+        modalStyle, modalOnClick = () => {},
 
-        show,
-        close,
-        children,
+        show = false, close = () => {}, children,
     }
 ) => {
     const [answerData, setAnswerData] = useState(answer);
@@ -71,21 +52,12 @@ const ModalInput: React.FC<IModalInput> = (
             }}
             backgroundStyle={backgroundStyle}
 
-            width={width}
-            height={height}
-            modalOnClick={modalOnClick}
-            modalStyle={modalStyle}
+            width={width} height={height} modalOnClick={modalOnClick} modalStyle={modalStyle}
 
             show={show}
         >
             {children ? children : 'question Modal'}
-            <div
-                style={{
-                    width: '100%',
-                    ...FlexColumnAlignCenterSpaceAround,
-                    ...inputContainerStyles,
-                }}
-            >
+            <div style={{width: '100%', ...FlexColumnAlignCenterSpaceAround, ...inputContainerStyles,}}>
                 {answer !== undefined && (
                     <input
                         value={answerData}
@@ -94,8 +66,7 @@ const ModalInput: React.FC<IModalInput> = (
                     />
                 )}
                 <InputMap
-                    inputData={inputData}
-                    setSaveInputs={setSaveInputs} // subscribe
+                    inputData={inputData} setSaveInputs={setSaveInputs} // subscribe
 
                     inputStyles={inputStyles}
                 />

@@ -29,7 +29,7 @@ export const ShopAPI = {
         return response.data;
     },
     addProduct: async (productName: string, price: number) => {
-        const response = await instance.post<IGetProducts>('/shop', {product: {productName, price}});
+        const response = await instance.post('/shop', {product: {productName, price}});
         return response.data;
     },
     updateProduct: async (id: string) => {

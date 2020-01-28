@@ -3,6 +3,9 @@ import {ShopAPI} from "../tp-3-dal/ShopAPI";
 import {getProducts} from "./getProductsThunks";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 import {ITableActions} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableActions";
+import {
+    tableError, tableLoading, tableSuccess
+} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-1-callbacks/tableBooleanCallbacks";
 
 type Return = void;
 type ExtraArgument = {};
@@ -12,25 +15,24 @@ export const addProduct =
     (productName: string, price: number): ThunkAction<Return, IAppStore, ExtraArgument, ITableActions> =>
         async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, ITableActions>, getStore: IGetStore) => {
 
-            // nekoLoading(dispatch, true);
+            tableLoading(dispatch, true, 'shop');
 
             try {
                 const data = await ShopAPI.addProduct(productName, price);
                 if (data.error) {
-                    // nekoError(dispatch, data.error);
+                    tableError(dispatch, data.error, 'shop');
 
                     console.log('Shop Add Product Error!', data.error);
                 } else {
 
-                    // dispatch(setTable('shop', data.products));
-                    // nekoSuccess(dispatch, true);
+                    tableSuccess(dispatch, true, 'shop');
 
                     console.log('Neko Add Product Success!', data);
                     dispatch(getProducts());
                 }
             } catch (e) {
-                // nekoError(dispatch, e.message);
+                tableError(dispatch, e.response.data.error, 'shop');
 
-                console.log('Neko Add Product Error!', e)
+                console.log('Neko Add Product Error!', {...e})
             }
         };

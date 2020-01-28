@@ -16,7 +16,7 @@ const ShopTableContainer: React.FC = () => {
     const model = shopTableModel(
         (id: string) => dispatch(updateProduct(id)),
         (id: string) => dispatch(deleteProduct(id)),
-        // () => dispatch(addProduct()),
+        (productName: string, price: number) => dispatch(addProduct(productName, price)),
     );
 
     useEffect(() => {

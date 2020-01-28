@@ -3,9 +3,7 @@ import {ShopAPI} from "../tp-3-dal/ShopAPI";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 import {ITableActions, setTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableActions";
 import {
-    tableLoading,
-    tableError,
-    tableSuccess
+    tableLoading, tableError, tableSuccess
 } from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-1-callbacks/tableBooleanCallbacks";
 
 type Return = void;

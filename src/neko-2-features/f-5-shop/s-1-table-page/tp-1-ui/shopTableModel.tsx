@@ -8,7 +8,7 @@ import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-re
 export const shopTableModel = (
     update: (id: string) => void,
     deleteP: (id: string) => void,
-    add?: () => void,
+    add: (productName: string, price: number) => void,
 ): ITableModel[] => {
     return [
         {
@@ -26,8 +26,7 @@ export const shopTableModel = (
         {
             title: (i: number) => (
                 <div key={i} style={{width: '15%'}}>
-                    {/*<button onClick={add}>add</button>*/}
-                    <AddUpdateItemModal/>
+                    <AddUpdateItemModal add={add}/>
                 </div>
             ),
             render: (d: IShopTable, i: number) => (
