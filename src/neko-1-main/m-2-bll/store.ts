@@ -5,6 +5,7 @@ import {registerReducer} from "../../neko-2-features/f-1-authorization/a-2-regis
 import {forgotReducer} from "../../neko-2-features/f-1-authorization/a-3-forgot/f-2-bll/b-2-redux/forgotReducer";
 import {nekoReducer} from "../../neko-2-features/f-4-social/s-1-neko/n-2-bll/b-2-redux/nekoReducer";
 import {booleanReducer} from "../../neko-2-features/f-3-common/c-1-boolean-reducer/booleanReducer";
+import {tableReducer} from "../../neko-2-features/f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableReducer";
 
 const reducers = combineReducers({
     signIn: signInReducer,
@@ -14,6 +15,8 @@ const reducers = combineReducers({
     booleans: booleanReducer,
 
     neko: nekoReducer,
+
+    tables: tableReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
