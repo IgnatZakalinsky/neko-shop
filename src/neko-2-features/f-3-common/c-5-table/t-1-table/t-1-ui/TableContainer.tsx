@@ -1,8 +1,10 @@
 import React from 'react';
-import Table, {ITableModel} from "./Table";
+import Table, {ITableModel, ITableProps} from "./Table";
 import {useSelector} from "react-redux";
 import {IAppStore} from "../../../../../neko-1-main/m-2-bll/store";
-import {IShopTable} from "../t-2-bll/b-2-redux/tableInitialState";
+import {IShopTable, ITables} from "../t-2-bll/b-2-redux/tableInitialState";
+import {useBooleanSelector} from "../../../c-1-boolean-reducer/useBooleanSelectors";
+import {TABLE_ACTION_NAMES} from "../t-2-bll/b-2-redux/tableActions";
 
 const testModel: ITableModel[] = [
     {
@@ -16,26 +18,27 @@ const testModel: ITableModel[] = [
 
 ];
 
-const TableContainer: React.FC = () => { // for test
-    // const {
-    //     loading, error, success, dispatch,
-    //     name,
-    //
-    //     show,
-    //     setShow,
-    //
-    //     redirect,
-    //     setRedirect,
-    //
-    //     logout,
-    // } = useNekoContainerLogic();
+interface ITableContainerProps {
+    table?: ITables; data?: any[]; model?: ITableModel[];
+}
+
+const TableContainer: React.FC<ITableProps & ITableContainerProps> = (
+    {
+        table = 'shop', data, model,
+        ...tableProps
+    }
+) => { // for test
+    const [loading, error, success] = useBooleanSelector(TABLE_ACTION_NAMES(table));
 
     const {shop} = useSelector((store: IAppStore) => store.tables);
 
     return (
         <Table
-            data={shop.items}
-            model={testModel}
+            loading={loading.value} error={error.data.message || ''}
+
+            data={data || shop.items} model={model || testModel}
+
+            {...tableProps}
         />
     );
 };

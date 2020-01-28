@@ -24,21 +24,14 @@ const NekoContainer: React.FC = () => {
 
     console.log('render NekoContainer');
     if (!show) return (
-        <div
-            style={{
-                ...FlexColumnCenterCenter,
-                height: '80vh',
-                color: 'orange',
-            }}
-        >
+        <div style={{...FlexColumnCenterCenter, height: '80vh', color: 'orange',}}>
             Loading...
         </div>
     );
 
     return (
         <Neko
-            loading={loading.value}
-            error={error.data.message || ''}
+            loading={loading.value} error={error.data.message || ''}
 
             name={name}
 

@@ -6,83 +6,43 @@ export interface ITableModel {
     render: (dataItem: any, modelIndex: number, dataIndex: number) => ReactNode;
 }
 
-interface ITableProps {
-    // loading: boolean;
-    // error: string;
-    //
-    // logoutCallback: () => void;
+export interface ITableProps {
+    loading?: boolean; error?: string;
 
-    model: ITableModel[];
-    data: any;
+    title?: string; model: ITableModel[]; data: any;
 
-    headerStyle?: CSSProperties,
-    tableStyle?: CSSProperties,
-    rowsStyle?: CSSProperties,
-    rowStyle?: CSSProperties,
+    headerStyle?: CSSProperties, tableStyle?: CSSProperties, rowsStyle?: CSSProperties, rowStyle?: CSSProperties,
 }
 
 const Table: React.FC<ITableProps> = (
     {
-        // loading,
-        // error,
-        //
-        // logoutCallback,
+        loading, error,
 
-        model,
-        data,
+        title = 'table', model, data,
 
-        headerStyle,
-        tableStyle,
-        rowsStyle,
-        rowStyle,
+        headerStyle, tableStyle,
+        rowsStyle, rowStyle,
     }
 ) => {
 
     return (
-        <div
-            style={{
-                margin: '0 10px',
-                // minHeight: '80vh',
-                ...FlexColumnCenterCenter,
-                ...tableStyle,
-            }}
-        >
-            table
+        <div style={{margin: '0 10px', ...FlexColumnCenterCenter, ...tableStyle}}>
+            {title}
 
-            {/*{loading*/}
-            {/*? <div style={{color: 'orange'}}>loading...</div>*/}
-            {/*: error*/}
-            {/*? <div style={{color: 'red'}}>{error}</div>*/}
-            {/*: <div><br/></div>*/}
-            {/*}*/}
+            {loading
+                ? <div style={{color: 'orange'}}>loading...</div>
+                : error
+                    ? <div style={{color: 'red'}}>{error}</div>
+                    : <div><br/></div>
+            }
 
-            <div
-                style={{
-                    border: '1px solid red',
-                    width: '100%',
-                    ...FlexCenterCenter,
-                    ...headerStyle,
-                }}
-            >
+            <div style={{border: '1px solid red', width: '100%', ...FlexCenterCenter, ...headerStyle}}>
                 {model.map((m: any, index: number) => m.title(index))}
             </div>
 
-            <div
-                style={{
-                    border: '1px solid lime',
-                    width: '100%',
-                    ...rowsStyle,
-                }}
-            >
+            <div style={{border: '1px solid lime', width: '100%', ...rowsStyle}}>
                 {data.map((dataItem: any, dataIndex: number) => (
-                    <div
-                        key={dataItem.id || dataIndex}
-                        style={{
-                            width: '100%',
-                            ...FlexCenterCenter,
-                            ...rowStyle,
-                        }}
-                    >
+                    <div key={dataItem.id || dataIndex} style={{width: '100%', ...FlexCenterCenter, ...rowStyle}}>
                         {model.map((m, modelIndex) => m.render(dataItem, modelIndex, dataIndex))}
                     </div>
                 ))}

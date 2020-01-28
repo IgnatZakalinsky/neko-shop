@@ -3,6 +3,7 @@ import {ITableModel} from "../../../f-3-common/c-5-table/t-1-table/t-1-ui/Table"
 import SortButton from "../../../f-3-common/c-5-table/table-4-sort-button/SortButton";
 import AddUpdateItemModal from "../../../f-3-common/c-5-table/table-5-add-update-item-modal/AddUpdateItemModal";
 import DeleteModal from "../../../f-3-common/c-5-table/table-6-delete-modal/DeleteModal";
+import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableInitialState";
 
 export const shopTableModel = (
     update: (id: string) => void,
@@ -12,7 +13,7 @@ export const shopTableModel = (
     return [
         {
             title: (i: number) => (<div key={i} style={{width: '60%'}}>product</div>),
-            render: (d: any, i: number) => (<div key={i} style={{width: '60%'}}>{d.productName}</div>)
+            render: (d: IShopTable, i: number) => (<div key={i} style={{width: '60%'}}>{d.productName}</div>)
         },
         {
             title: (i: number) => (
@@ -20,7 +21,7 @@ export const shopTableModel = (
                     price .<SortButton/>
                 </div>
             ),
-            render: (d: any, i: number) => (<div key={i} style={{width: '25%'}}>{d.price}</div>)
+            render: (d: IShopTable, i: number) => (<div key={i} style={{width: '25%'}}>{d.price}</div>)
         },
         {
             title: (i: number) => (
@@ -29,7 +30,7 @@ export const shopTableModel = (
                     <AddUpdateItemModal/>
                 </div>
             ),
-            render: (d: any, i: number) => (
+            render: (d: IShopTable, i: number) => (
                 <div key={i} style={{width: '15%'}}>
                     <DeleteModal id={d.id}/>
                     {/*<button onClick={() => deleteP(d.id)}>delete</button>*/}
