@@ -19,7 +19,7 @@ const InputMap: React.FC<IInputMap> = (
 ) => {
     const defAnswersData = useMemo(() => {
         return inputData ? inputData.map((iD, i) => ({id: i, value: iD[0], setValue: iD[1]})) : [];
-    }, []);
+    }, [inputData]);
     const [modalInputData, setModalInputData] = useState(defAnswersData);
 
     const setInputData = (id: number, value: string) => {
@@ -30,7 +30,10 @@ const InputMap: React.FC<IInputMap> = (
     }, [modalInputData]);
 
     const successCloseModal = () => {
-        for (const iD of modalInputData) iD.setValue(iD.value);
+        for (const iD of modalInputData) {
+            console.log(modalInputData)
+            iD.setValue(iD.value);
+        }
     };
 
     console.log('render InputMap');

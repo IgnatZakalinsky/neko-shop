@@ -1,33 +1,31 @@
-import React, {useState} from 'react';
+import React, {CSSProperties, ReactNode, useState} from 'react';
 import ModalInput, {IModalInput} from "../../c-2-modals/modals-1-ui/input/ModalInput";
+import {IInputData} from "../../c-2-modals/modals-1-ui/input/InputMap";
 
 interface IAddUpdateItemModalProps {
-    add: (productName: string, price: number) => void
+    inputData?: IInputData[];
+
+    buttonShow?: ReactNode; buttonShowStyle?: CSSProperties;
 }
 
 const AddUpdateItemModal: React.FC<IAddUpdateItemModalProps & IModalInput> = (
     {
-        add,
+        inputData, children,
+
+        buttonShow= 'add', buttonShowStyle,
+
         ...modalProps
     }
 ) => {
     const [show, setShow] = useState(false);
-    const [value1, setValue1] = useState('test product name');
-    const [value2, setValue2] = useState('1000');
-
-    const setValue2end = (newValue2: string) => {
-        setValue1('test product name');
-        setValue2('1000');
-        add(value1, Number(newValue2));
-    };
 
     return (
         <>
-            <button onClick={() => setShow(true)}>add</button>
+            <button onClick={() => setShow(true)} style={buttonShowStyle}>{buttonShow}</button>
             <ModalInput
                 show={show} close={() => setShow(false)}
 
-                inputData={[[value1, setValue1], [value2, setValue2end]]}
+                inputData={inputData}
 
                 enableBackground={true}
                 backgroundOnClick={() => setShow(false)}
@@ -35,7 +33,7 @@ const AddUpdateItemModal: React.FC<IAddUpdateItemModalProps & IModalInput> = (
                 width={300} height={200}
                 {...modalProps}
             >
-                add new product:
+                {children}
             </ModalInput>
         </>
     );
