@@ -12,6 +12,8 @@ export const TABLE_ADD_ITEM = 'TABLE/ADD_ITEM';
 export const TABLE_DELETE_ITEM = 'TABLE/DELETE_ITEM';
 export const TABLE_UPDATE_ITEM = 'TABLE/UPDATE_ITEM';
 
+export const TABLE_SET_SORT_PRODUCTS = 'TABLE/SET_SORT_PRODUCTS';
+
 export const TABLE_SET_MIN_MAX_PRICE = 'TABLE/SET_MIN_MAX_PRICE';
 export const TABLE_SET_SEARCH_NAME = 'TABLE/SET_SEARCH_NAME';
 
@@ -36,6 +38,12 @@ interface ISetTable {
 //     table: ITables;
 //     item: any;
 // }
+interface ISetSortProducts {
+    type: typeof TABLE_SET_SORT_PRODUCTS;
+    table: ITables;
+    sortProducts: string;
+}
+
 interface ISetMinMax {
     type: typeof TABLE_SET_MIN_MAX_PRICE;
     table: ITables;
@@ -48,7 +56,7 @@ interface ISetSearchName {
     searchName: string;
 }
 
-export type ITableActions = ISetTable | ISetMinMax | ISetSearchName; // | IAddItem | IDeleteItem | IUpdateItem;
+export type ITableActions = ISetTable | ISetMinMax | ISetSearchName | ISetSortProducts; // | IAddItem | IDeleteItem | IUpdateItem;
 
 export const setTable = (table: ITables, items: IShopTable[], settings: IShopSettings): ISetTable => ({
     type: TABLE_SET_TABLE,
@@ -66,4 +74,9 @@ export const setSearchName = (table: ITables, searchName: string): ISetSearchNam
     type: TABLE_SET_SEARCH_NAME,
     table,
     searchName,
+});
+export const SetSortProducts = (table: ITables, sortProducts: string): ISetSortProducts => ({
+    type: TABLE_SET_SORT_PRODUCTS,
+    table,
+    sortProducts,
 });

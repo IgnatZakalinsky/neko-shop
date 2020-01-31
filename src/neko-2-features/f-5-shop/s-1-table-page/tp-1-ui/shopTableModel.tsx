@@ -12,7 +12,7 @@ export const shopTableModel = (
 ): ITableModel[] => {
     return [
         {
-            title: (i: number) => (<div key={i} style={{width: '60%'}}>product</div>),
+            title: (i: number) => (<div key={i} style={{width: '60%'}}>product name</div>),
             render: (d: IShopTable, i: number) => (<div key={i} style={{width: '60%'}}>{d.productName}</div>)
         },
         {

@@ -1,7 +1,9 @@
-import {tableInitialState} from "./tableInitialState";
-import {ITableActions, TABLE_SET_MIN_MAX_PRICE, TABLE_SET_SEARCH_NAME, TABLE_SET_TABLE} from "./tableActions";
+import {ITableState, tableInitialState} from "./tableInitialState";
+import {
+    ITableActions, TABLE_SET_MIN_MAX_PRICE, TABLE_SET_SEARCH_NAME, TABLE_SET_SORT_PRODUCTS, TABLE_SET_TABLE
+} from "./tableActions";
 
-export const tableReducer = (state = tableInitialState, action: ITableActions) => {
+export const tableReducer = (state = tableInitialState, action: ITableActions): ITableState => {
     switch (action.type) {
         case TABLE_SET_TABLE: {
             return {
@@ -30,6 +32,15 @@ export const tableReducer = (state = tableInitialState, action: ITableActions) =
         //         [action.table]: action.item,
         //     }
         // }
+        case TABLE_SET_SORT_PRODUCTS: {
+            return {
+                ...state,
+                [action.table]: {
+                    ...state[action.table],
+                    settings: {...state[action.table].settings, sortProducts: action.sortProducts}
+                },
+            }
+        }
         case TABLE_SET_MIN_MAX_PRICE:{
             return {
                 ...state,

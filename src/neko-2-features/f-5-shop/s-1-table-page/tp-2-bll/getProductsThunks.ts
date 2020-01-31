@@ -13,13 +13,16 @@ type IGetStore = () => IAppStore;
 export const getProducts =
     (newPage?: number, newPageCount?: number): ThunkAction<Return, IAppStore, ExtraArgument, ITableActions> =>
         async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, ITableActions>, getStore: IGetStore) => {
-            const {min, max, searchName, page, pageCount} = getStore().tables.shop.settings;
+            const {min, max, searchName, page, pageCount, sortProducts} = getStore().tables.shop.settings;
 
             tableLoading(dispatch, true, 'shop');
 
             try {
                 const data = await ShopAPI
-                    .getProducts(min, max, searchName, newPage || page, newPageCount || pageCount);
+                    .getProducts(
+                        min, max, searchName, newPage || page, newPageCount || pageCount, sortProducts
+                    );
+
                 if (data.error) {
                     tableError(dispatch, data.error, 'shop');
 
@@ -27,16 +30,13 @@ export const getProducts =
                 } else {
 
                     dispatch(setTable('shop', data.products, {
-                        minPrice: data.minPrice,
-                        maxPrice: data.maxPrice,
-                        min: data.minPrice,
-                        max: data.maxPrice,
+                        minPrice: data.minPrice, maxPrice: data.maxPrice,
+                        min: data.minPrice, max: data.maxPrice,
 
-                        searchName,
+                        searchName, sortProducts,
 
                         productTotalCount: data.productTotalCount,
-                        page: data.page,
-                        pageCount: data.pageCount,
+                        page: data.page, pageCount: data.pageCount,
                     }));
                     tableSuccess(dispatch, true, 'shop');
 

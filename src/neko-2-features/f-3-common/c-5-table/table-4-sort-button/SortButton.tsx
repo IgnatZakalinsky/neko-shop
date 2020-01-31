@@ -1,42 +1,23 @@
 import React, {useState} from 'react';
+import {FlexColumnCenterCenter} from "../../../../neko-3-styles/flex-containers";
+import {useDispatch} from "react-redux";
+import {SetSortProducts} from "../t-1-table/t-2-bll/b-2-redux/tableActions";
+import {getProducts} from "../../../f-5-shop/s-1-table-page/tp-2-bll/getProductsThunks";
 
-interface ISortButtonProps {
-    // loading: boolean;
-    // error: string;
-    //
-    // name: string;
-    //
-    // logoutCallback: () => void;
+const SortButton: React.FC = () => {
+    const [sort, setSort] = useState(-1);
+    const dispatch = useDispatch();
 
-
-}
-
-const SortButton: React.FC<ISortButtonProps> = (
-    {
-        // loading,
-        // error,
-        //
-        // name,
-        //
-        // logoutCallback,
-
-    }
-) => {
-    const [sort, setSort] = useState(0);
+    const sortPrice = (x: number) => {
+        setSort(x);
+        dispatch(SetSortProducts('shop', x + 'price'));
+        dispatch(getProducts());
+    };
 
     return (
-        <div
-            style={{
-                // margin: '0 10px',
-                // minHeight: '50px',
-                display: 'flex',
-                flexFlow: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            <button style={{background: sort === 1 ? 'lime' : undefined}} onClick={() => setSort(1)}>/\</button>
-            <button style={{background: sort === 2 ? 'lime' : undefined}} onClick={() => setSort(2)}>\/</button>
+        <div style={{...FlexColumnCenterCenter}}>
+            <button style={{background: sort === 1 ? 'lime' : undefined}} onClick={() => sortPrice(1)}>/\</button>
+            <button style={{background: sort === 0 ? 'lime' : undefined}} onClick={() => sortPrice(0)}>\/</button>
         </div>
     );
 };

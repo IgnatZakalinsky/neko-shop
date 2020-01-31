@@ -12,6 +12,8 @@ export interface IShopSettings {
 
     searchName: string;
 
+    sortProducts: string;
+
     productTotalCount: number;
     page: number;
     pageCount: number;
@@ -49,6 +51,8 @@ export const tableInitialState: ITableState = {
             max: 9000,
 
             searchName: '',
+
+            sortProducts: '',
 
             productTotalCount: 7,
             page: 1,
