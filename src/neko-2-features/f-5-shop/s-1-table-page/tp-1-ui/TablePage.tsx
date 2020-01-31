@@ -6,7 +6,7 @@ import ShopPagination from "./u-1-buttons/ShopPagination";
 const TablePage: React.FC = () => {
     return (
         <>
-            {/*<Search/>*/}
+            <Search/>
             <ShopTableContainer/>
             <ShopPagination/>
         </>

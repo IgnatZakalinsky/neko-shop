@@ -33,11 +33,7 @@ const ShopTableContainer: React.FC = () => {
     //     </div>
     // );
 
-    return (
-        <TableContainer
-            table={'shop'} model={model} data={shop.items}
-        />
-    );
+    return <TableContainer table={'shop'} model={model} data={shop.items}/>;
 };
 
 export default ShopTableContainer;
