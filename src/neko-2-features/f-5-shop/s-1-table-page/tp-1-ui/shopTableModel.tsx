@@ -3,7 +3,7 @@ import {ITableModel} from "../../../f-3-common/c-5-table/t-1-table/t-1-ui/Table"
 import SortButton from "../../../f-3-common/c-5-table/table-4-sort-button/SortButton";
 import DeleteModal from "../../../f-3-common/c-5-table/table-6-delete-modal/DeleteModal";
 import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableInitialState";
-import AddUpdateProductModal from "./u-1-button-modals/AddUpdateProductModal";
+import AddUpdateProductModal from "./u-1-buttons/AddUpdateProductModal";
 
 export const shopTableModel = (
     update: (id: string) => void,

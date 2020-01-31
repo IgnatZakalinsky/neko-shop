@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import AddUpdateItemModal from "../../../../f-3-common/c-5-table/table-5-add-update-item-modal/AddUpdateItemModal";
+import AddUpdateItemModal from "../../../../f-3-common/c-5-table/t-2-add-update-item-modal/AddUpdateItemModal";
 
 interface IAddUpdateProductModalProps {
     add: (productName: string, price: number) => void

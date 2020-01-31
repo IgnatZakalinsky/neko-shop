@@ -1,67 +1,39 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
+import React, {CSSProperties, ReactNode} from 'react';
+import {FlexAlignCenterFlexEnd} from "../../../../neko-3-styles/flex-containers";
 
 interface IPaginationProps {
-    // loading: boolean;
-    // error: string;
-    //
-    // name: string;
-    //
-    // logoutCallback: () => void;
+    page: number; pageCount: number; productTotalCount: number;
+    getPage: (newPage: number, newPageCount: number) => void;
 
-
+    title?: ReactNode; paginationStyle?: CSSProperties; buttonStyle?: CSSProperties; selectStyle?: CSSProperties;
 }
 
 const Pagination: React.FC<IPaginationProps> = (
     {
-        // loading,
-        // error,
-        //
-        // name,
-        //
-        // logoutCallback,
+        page, pageCount, productTotalCount, getPage,
 
+        title = 'Pagination', paginationStyle,
+        buttonStyle, selectStyle
     }
 ) => {
-    // const [selectedItems, selectItems] = useState(7);
-    // const [selectedPage, selectPage] = useState(1);
-
-    const {shop} = useSelector((store: IAppStore) => store.tables);
-    const {page, pageCount, productTotalCount} = shop.settings;
-    const dispatch = useDispatch();
-
-    const getPage = (p: number, pc: number) => {
-
-        // dispatch(getProducts(p, pc))
-    };
-
     const pages = [];
-    console.log(page, pageCount, productTotalCount, '!!!!!!!!!!!!!!!!!!!!')
+    console.log(page, pageCount, productTotalCount, '!!!!!!!!!!!!!!!!!!!!', Math.ceil(productTotalCount / pageCount))
 
-    for (let i = 0; i <= productTotalCount / pageCount; i++) pages.push((
+    for (let i = 1; i <= Math.ceil(productTotalCount / pageCount); i++) pages.push((
         <button
-            style={{background: page === i + 1 ? 'lime' : undefined}}
-            onClick={() => getPage(i + 1, pageCount)}
+            key={i}
+            style={{background: page === i ? 'lime' : undefined, ...buttonStyle}}
+            onClick={() => getPage(i, pageCount)}
         >
-            {i + 1}
+            {i}
         </button>
     ));
 
     return (
-        <div
-            style={{
-                margin: '0 10px',
-                minHeight: '50px',
-                display: 'flex',
-                flexFlow: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-end',
-            }}
-        >
-            Pagination
+        <div style={{margin: '0 10px', minHeight: '50px', ...FlexAlignCenterFlexEnd, ...paginationStyle}}>
+            {title}
 
-            <select value={pageCount} onChange={e => getPage(page, Number(e.currentTarget.value))}>
+            <select value={pageCount} onChange={e => getPage(page, Number(e.currentTarget.value))} style={selectStyle}>
                 <option value={4}>4</option>
                 <option value={7}>7</option>
                 <option value={10}>10</option>

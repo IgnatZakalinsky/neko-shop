@@ -11,14 +11,15 @@ type ExtraArgument = {};
 type IGetStore = () => IAppStore;
 
 export const getProducts =
-    (page?: number, pageCount?: number): ThunkAction<Return, IAppStore, ExtraArgument, ITableActions> =>
+    (newPage?: number, newPageCount?: number): ThunkAction<Return, IAppStore, ExtraArgument, ITableActions> =>
         async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, ITableActions>, getStore: IGetStore) => {
-            const {min, max, searchName} = getStore().tables.shop.settings;
+            const {min, max, searchName, page, pageCount} = getStore().tables.shop.settings;
 
             tableLoading(dispatch, true, 'shop');
 
             try {
-                const data = await ShopAPI.getProducts(min, max, searchName, page, pageCount);
+                const data = await ShopAPI
+                    .getProducts(min, max, searchName, newPage || page, newPageCount || pageCount);
                 if (data.error) {
                     tableError(dispatch, data.error, 'shop');
 

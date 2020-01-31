@@ -30,10 +30,7 @@ const InputMap: React.FC<IInputMap> = (
     }, [modalInputData]);
 
     const successCloseModal = () => {
-        for (const iD of modalInputData) {
-            console.log(modalInputData)
-            iD.setValue(iD.value);
-        }
+        for (const iD of modalInputData) iD.setValue(iD.value);
     };
 
     console.log('render InputMap');

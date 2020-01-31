@@ -23,3 +23,5 @@ export const FlexColumnAlignCenterSpaceAroundWrap: CSSProperties = {
     ...FlexColumnAlignCenterSpaceAround,
     flexWrap: 'wrap'
 };
+
+export const FlexAlignCenterFlexEnd: CSSProperties = {...FlexAlignCenter, justifyContent: 'flex-end'};
