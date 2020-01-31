@@ -43,7 +43,7 @@ export const getProducts =
                     console.log('Neko Get Products Success!', data)
                 }
             } catch (e) {
-                tableError(dispatch, e.response.data.error, 'shop');
+                tableError(dispatch, e.response ? e.response.data.error : e.message, 'shop');
 
                 console.log('Neko Get Products Error!', {...e})
             }

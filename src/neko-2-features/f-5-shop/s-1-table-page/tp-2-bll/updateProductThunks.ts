@@ -4,8 +4,7 @@ import {getProducts} from "./getProductsThunks";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 import {ITableActions} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableActions";
 import {
-    tableError,
-    tableLoading, tableSuccess
+    tableError, tableLoading, tableSuccess
 } from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-1-callbacks/tableBooleanCallbacks";
 
 type Return = void;
@@ -31,7 +30,7 @@ export const updateProduct =
                     dispatch(getProducts());
                 }
             } catch (e) {
-                tableError(dispatch, e.response.data.error, 'shop');
+                tableError(dispatch, e.response ? e.response.data.error : e.message, 'shop');
 
                 console.log('Neko Update Product Error!', {...e})
             }

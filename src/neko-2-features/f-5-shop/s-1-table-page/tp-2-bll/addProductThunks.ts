@@ -31,7 +31,7 @@ export const addProduct =
                     dispatch(getProducts());
                 }
             } catch (e) {
-                tableError(dispatch, e.response.data.error, 'shop');
+                tableError(dispatch, e.response ? e.response.data.error : e.message, 'shop');
 
                 console.log('Neko Add Product Error!', {...e})
             }

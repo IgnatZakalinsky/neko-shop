@@ -12,7 +12,6 @@ const AddUpdateProductModal: React.FC<IAddUpdateProductModalProps> = (
     {
         add, update,
         productName, price,
-        ...modalProps
     }
 ) => {
     const [value1, setValue1] = useState('');

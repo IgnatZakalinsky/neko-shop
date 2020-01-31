@@ -37,7 +37,7 @@ export const ShopAPI = {
         return response.data;
     },
     deleteProduct: async (id: string) => {
-        const response = await instance.delete<IGetProducts>(`/shop?id=${id}`);
+        const response = await instance.delete(`/shop?id=${id}`);
         return response.data;
     },
 

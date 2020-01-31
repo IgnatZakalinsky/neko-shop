@@ -32,7 +32,7 @@ export const getMe = (): ThunkAction<Return, IAppStore, ExtraArgument, INekoActi
                     console.log('Neko Get Me Success!', data.name)
                 }
             } catch (e) {
-                nekoError(dispatch, e.response.data.error);
+                nekoError(dispatch, e.response ? e.response.data.error : e.message);
                 if (e.response.data.error === 'bad token!') setCookie('token', '', -1000);
 
                 console.log('Neko Get Me Error!', {...e})

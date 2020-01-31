@@ -38,7 +38,7 @@ export const signIn =
                     console.log('Neko Sign-in Success!', data)
                 }
             } catch (e) {
-                signInError(dispatch, e.response.data.error);
+                signInError(dispatch, e.response ? e.response.data.error : e.message);
 
                 console.log('Neko Sign-in Error!', {...e})
             }
