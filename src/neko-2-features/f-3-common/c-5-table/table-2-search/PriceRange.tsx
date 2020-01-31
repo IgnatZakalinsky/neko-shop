@@ -4,37 +4,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {setMinMax} from "../t-1-table/t-2-bll/b-2-redux/tableActions";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 
-interface IPriceRangeProps {
-    // loading: boolean;
-    // error: string;
-    //
-    // name: string;
-    //
-    // logoutCallback: () => void;
-
-
-}
-
-const PriceRange: React.FC<IPriceRangeProps> = (
-    {
-        // loading,
-        // error,
-        //
-        // name,
-        //
-        // logoutCallback,
-
-    }
-) => {
+const PriceRange: React.FC = () => {
     const {shop} = useSelector((store: IAppStore) => store.tables);
     const {minPrice, maxPrice} = shop.settings;
     const [values, setValues] = useState([minPrice, maxPrice]);
 
     const dispatch = useDispatch();
 
-    const setGlobalValues = (values: number[]) => {
-        dispatch(setMinMax('shop', values[0], values[1]));
-        setValues(values);
+    const setGlobalValues = (newValues: number[]) => {
+        dispatch(setMinMax('shop', newValues[0], newValues[1]));
+        setValues(newValues);
     };
 
     useEffect(() => {

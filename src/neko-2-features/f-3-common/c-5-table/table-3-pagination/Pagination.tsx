@@ -17,7 +17,6 @@ const Pagination: React.FC<IPaginationProps> = (
     }
 ) => {
     const pages = [];
-    console.log(page, pageCount, productTotalCount, '!!!!!!!!!!!!!!!!!!!!', Math.ceil(productTotalCount / pageCount))
 
     for (let i = 1; i <= Math.ceil(productTotalCount / pageCount); i++) pages.push((
         <button

@@ -11,7 +11,6 @@ const Search: React.FC = () => {
     const {searchName} = shop.settings;
     const dispatch = useDispatch();
 
-    // const search = () => {};
     const search = () => dispatch(getProducts());
     const setName = (newSearchName: string) => dispatch(setSearchName('shop', newSearchName));
 
@@ -20,14 +19,14 @@ const Search: React.FC = () => {
             Search
 
             <input value={searchName} onChange={e => setName(e.currentTarget.value)} placeholder={'product name'}/>
+
             {/*<input type={'range'} min={3000} max={9000} list={'il'} step={1000} multiple={true}/>*/}
             {/*<datalist id={'il'}>*/}
                 {/*<option value={'0'} label={'3000'}/>*/}
                 {/*<option value={'50'} label={'6000'}/>*/}
                 {/*<option value={'100'} label={'9000'}/>*/}
             {/*</datalist>*/}
-
-            {/*<PriceRange/>*/}
+            <PriceRange/>
 
             <button onClick={search}>Search</button>
         </div>
