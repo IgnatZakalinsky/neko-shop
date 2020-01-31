@@ -32,17 +32,12 @@ export const ShopAPI = {
         const response = await instance.post('/shop', {product: {productName, price}});
         return response.data;
     },
-    updateProduct: async (id: string) => {
-        const response = await instance.put<IGetProducts>(
-            '/shop',
-            {product: {productName: 'newCar2', price: 9000, id}}
-        );
+    updateProduct: async (productName: string, price: number, id: string) => {
+        const response = await instance.put('/shop', {product: {productName, price, id}});
         return response.data;
     },
     deleteProduct: async (id: string) => {
-        const response = await instance.delete<IGetProducts>(
-            `/shop?id=${id}`
-        );
+        const response = await instance.delete<IGetProducts>(`/shop?id=${id}`);
         return response.data;
     },
 

@@ -3,33 +3,36 @@ import {ShopAPI} from "../tp-3-dal/ShopAPI";
 import {getProducts} from "./getProductsThunks";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 import {ITableActions} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableActions";
+import {
+    tableError,
+    tableLoading, tableSuccess
+} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-1-callbacks/tableBooleanCallbacks";
 
 type Return = void;
 type ExtraArgument = {};
 type IGetStore = () => IAppStore;
 
-export const updateProduct = (id: string): ThunkAction<Return, IAppStore, ExtraArgument, ITableActions> =>
-    async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, ITableActions>, getStore: IGetStore) => {
+export const updateProduct =
+    (productName: string, price: number, id: string): ThunkAction<Return, IAppStore, ExtraArgument, ITableActions> =>
+        async (dispatch: ThunkDispatch<IAppStore, ExtraArgument, ITableActions>, getStore: IGetStore) => {
 
-        // nekoLoading(dispatch, true);
+            tableLoading(dispatch, true, 'shop');
 
-        try {
-            const data = await ShopAPI.updateProduct(id);
-            if (data.error) {
-                // nekoError(dispatch, data.error);
+            try {
+                const data = await ShopAPI.updateProduct(productName, price, id);
+                if (data.error) {
+                    tableError(dispatch, data.error, 'shop');
 
-                console.log('Shop Update Product Error!', data.error);
-            } else {
+                    console.log('Shop Update Product Error!', data.error);
+                } else {
+                    tableSuccess(dispatch, true, 'shop');
 
-                // dispatch(setTable('shop', data.products));
-                // nekoSuccess(dispatch, true);
+                    console.log('Neko Update Product Success!', data);
+                    dispatch(getProducts());
+                }
+            } catch (e) {
+                tableError(dispatch, e.response.data.error, 'shop');
 
-                console.log('Neko Update Product Success!', data);
-                dispatch(getProducts());
+                console.log('Neko Update Product Error!', {...e})
             }
-        } catch (e) {
-            // nekoError(dispatch, e.message);
-
-            console.log('Neko Update Product Error!', e)
-        }
-    };
+        };

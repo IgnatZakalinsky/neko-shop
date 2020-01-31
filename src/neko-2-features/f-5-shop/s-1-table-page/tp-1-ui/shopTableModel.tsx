@@ -6,7 +6,7 @@ import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-re
 import AddUpdateProductModal from "./u-1-buttons/AddUpdateProductModal";
 
 export const shopTableModel = (
-    update: (id: string) => void,
+    update: (productName: string, price: number, id: string) => void,
     deleteP: (id: string) => void,
     add: (productName: string, price: number) => void,
 ): ITableModel[] => {
@@ -32,8 +32,10 @@ export const shopTableModel = (
             render: (d: IShopTable, i: number) => (
                 <div key={i} style={{width: '15%'}}>
                     <DeleteModal id={d.id}/>
-                    {/*<button onClick={() => deleteP(d.id)}>delete</button>*/}
-                    <button onClick={() => update(d.id)}>update</button>
+                    <AddUpdateProductModal
+                        productName={d.productName} price={d.price}
+                        update={(productName: string, price: number) => update(productName, price, d.id)}
+                    />
                 </div>
             )
         },
