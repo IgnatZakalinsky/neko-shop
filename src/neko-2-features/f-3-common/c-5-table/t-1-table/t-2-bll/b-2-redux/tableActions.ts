@@ -23,11 +23,11 @@ interface ISetTable {
     items: IShopTable[];
     settings: IShopSettings;
 }
-// interface IAddItem {
-//     type: typeof TABLE_ADD_ITEM;
-//     table: ITables;
-//     item: any;
-// }
+interface IAddItem {
+    type: typeof TABLE_ADD_ITEM;
+    table: ITables;
+    item: any;
+}
 // interface IDeleteItem {
 //     type: typeof TABLE_DELETE_ITEM;
 //     table: ITables;
@@ -56,7 +56,7 @@ interface ISetSearchName {
     searchName: string;
 }
 
-export type ITableActions = ISetTable | ISetMinMax | ISetSearchName | ISetSortProducts; // | IAddItem | IDeleteItem | IUpdateItem;
+export type ITableActions = ISetTable | ISetMinMax | ISetSearchName | ISetSortProducts | IAddItem; // | IDeleteItem | IUpdateItem;
 
 export const setTable = (table: ITables, items: IShopTable[], settings: IShopSettings): ISetTable => ({
     type: TABLE_SET_TABLE,
@@ -64,6 +64,12 @@ export const setTable = (table: ITables, items: IShopTable[], settings: IShopSet
     items,
     settings,
 });
+export const addItem = (table: ITables, item: IShopTable): IAddItem => ({
+    type: TABLE_ADD_ITEM,
+    table,
+    item
+});
+
 export const setMinMax = (table: ITables, min: number, max: number): ISetMinMax => ({
     type: TABLE_SET_MIN_MAX_PRICE,
     table,

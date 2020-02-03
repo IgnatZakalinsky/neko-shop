@@ -7,6 +7,8 @@ import {updateProduct} from "../tp-2-bll/updateProductThunks";
 import {deleteProduct} from "../tp-2-bll/deleteProductThunks";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 import TableContainer from "../../../f-3-common/c-5-table/t-1-table/t-1-ui/TableContainer";
+import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableInitialState";
+import { addItem } from '../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableActions';
 import {FlexColumnCenterCenter} from "../../../../neko-3-styles/flex-containers";
 
 const ShopTableContainer: React.FC = () => {
@@ -17,6 +19,7 @@ const ShopTableContainer: React.FC = () => {
         (productName: string, price: number, id: string) => dispatch(updateProduct(productName, price, id)),
         (id: string) => dispatch(deleteProduct(id)),
         (productName: string, price: number) => dispatch(addProduct(productName, price)),
+        (product: IShopTable) => dispatch(addItem("shopBasket", product))
     );
 
     useEffect(() => {

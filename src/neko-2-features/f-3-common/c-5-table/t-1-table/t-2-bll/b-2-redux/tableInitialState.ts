@@ -31,7 +31,7 @@ export interface ITableState {
 
 }
 
-export type ITables = 'shop';
+export type ITables = 'shop' | 'shopBasket';
 
 export const tableInitialState: ITableState = {
     shop: {

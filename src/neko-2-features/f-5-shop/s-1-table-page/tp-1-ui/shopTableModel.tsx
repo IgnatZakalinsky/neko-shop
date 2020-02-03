@@ -9,6 +9,7 @@ export const shopTableModel = (
     update: (productName: string, price: number, id: string) => void,
     deleteP: (id: string) => void,
     add: (productName: string, price: number) => void,
+    addToBasket: (product: IShopTable) => void
 ): ITableModel[] => {
     return [
         {
@@ -31,11 +32,13 @@ export const shopTableModel = (
             ),
             render: (d: IShopTable, i: number) => (
                 <div key={i} style={{width: '15%'}}>
-                    <DeleteProductModal id={d.id} deleteItem={deleteP}/>
+                    <button onClick={() => addToBasket(d)}>add to basket</button>
+
                     <AddUpdateProductModal
                         productName={d.productName} price={d.price}
                         update={(productName: string, price: number) => update(productName, price, d.id)}
                     />
+                    <DeleteProductModal id={d.id} deleteItem={deleteP}/>
                 </div>
             )
         },

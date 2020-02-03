@@ -1,6 +1,8 @@
 import {ITableState, tableInitialState} from "./tableInitialState";
 import {
-    ITableActions, TABLE_SET_MIN_MAX_PRICE, TABLE_SET_SEARCH_NAME, TABLE_SET_SORT_PRODUCTS, TABLE_SET_TABLE
+    ITableActions,
+    TABLE_SET_TABLE, TABLE_ADD_ITEM,
+    TABLE_SET_MIN_MAX_PRICE, TABLE_SET_SEARCH_NAME, TABLE_SET_SORT_PRODUCTS
 } from "./tableActions";
 
 export const tableReducer = (state = tableInitialState, action: ITableActions): ITableState => {
@@ -14,12 +16,15 @@ export const tableReducer = (state = tableInitialState, action: ITableActions): 
                 },
             }
         }
-        // case TABLE_ADD_ITEM: {
-        //     return {
-        //         ...state,
-        //         [action.table]: {items: [...state[action.table].items, action.item]},
-        //     }
-        // }
+        case TABLE_ADD_ITEM: {
+            return {
+                ...state,
+                [action.table]: {
+                    items: [...state[action.table].items, action.item],
+                    settings: state[action.table].settings
+                },
+            }
+        }
         // case TABLE_DELETE_ITEM: {
         //     return {
         //         ...state,
