@@ -56,7 +56,7 @@ export const tableInitialState: ITableState = {
 
             productTotalCount: 7,
             page: 1,
-            pageCount: 7,
+            pageCount: 10,
         }
     }
 };

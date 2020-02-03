@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {IAppStore} from "../../../../../neko-1-main/m-2-bll/store";
-import Pagination from "../../../../f-3-common/c-5-table/table-3-pagination/Pagination";
+import Pagination from "../../../../f-3-common/c-5-table/t-4-pagination/Pagination";
 import {getProducts} from "../../tp-2-bll/getProductsThunks";
 
 const ShopPagination: React.FC = () => {
