@@ -1,9 +1,9 @@
 import React from 'react';
 import {ITableModel} from "../../../f-3-common/c-5-table/t-1-table/t-1-ui/Table";
 import SortButton from "../../../f-3-common/c-5-table/table-4-sort-button/SortButton";
-import DeleteModal from "../../../f-3-common/c-5-table/table-6-delete-modal/DeleteModal";
 import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableInitialState";
 import AddUpdateProductModal from "./u-1-buttons/AddUpdateProductModal";
+import DeleteProductModal from "./u-1-buttons/DeleteProductModal";
 
 export const shopTableModel = (
     update: (productName: string, price: number, id: string) => void,
@@ -31,7 +31,7 @@ export const shopTableModel = (
             ),
             render: (d: IShopTable, i: number) => (
                 <div key={i} style={{width: '15%'}}>
-                    <DeleteModal id={d.id}/>
+                    <DeleteProductModal id={d.id} deleteItem={deleteP}/>
                     <AddUpdateProductModal
                         productName={d.productName} price={d.price}
                         update={(productName: string, price: number) => update(productName, price, d.id)}

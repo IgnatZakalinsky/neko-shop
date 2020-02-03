@@ -6,6 +6,7 @@ interface IAddUpdateItemModalProps {
     inputData?: IInputData[];
 
     buttonShow?: ReactNode; buttonShowStyle?: CSSProperties;
+    buttonDisable: boolean;
 }
 
 const AddUpdateItemModal: React.FC<IAddUpdateItemModalProps & IModalInput> = (
@@ -13,6 +14,7 @@ const AddUpdateItemModal: React.FC<IAddUpdateItemModalProps & IModalInput> = (
         inputData, children,
 
         buttonShow= 'add', buttonShowStyle,
+        buttonDisable,
 
         ...modalProps
     }
@@ -21,7 +23,10 @@ const AddUpdateItemModal: React.FC<IAddUpdateItemModalProps & IModalInput> = (
 
     return (
         <>
-            <button onClick={() => setShow(true)} style={buttonShowStyle}>{buttonShow}</button>
+            <button onClick={() => setShow(true)} style={buttonShowStyle} disabled={buttonDisable}>
+                {buttonShow}
+            </button>
+
             <ModalInput
                 show={show} close={() => setShow(false)}
 
