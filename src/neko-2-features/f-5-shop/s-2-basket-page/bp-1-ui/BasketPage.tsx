@@ -5,7 +5,6 @@ import BasketTableContainer from "./BasketTableContainer";
 const BasketPage: React.FC = () => {
     return (
         <>
-            basket
             {/*<Search/>*/}
             <BasketTableContainer/>
             {/*<ShopPagination/>*/}
