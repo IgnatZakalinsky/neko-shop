@@ -9,11 +9,9 @@ const ModalContainer: React.FC = () => {
         <>
             <button onClick={() => setShow(true)}>show simple Modal</button>
             <Modal
-                enableBackground={true}
-                backgroundOnClick={() => setShow(false)}
+                enableBackground={true} backgroundOnClick={() => setShow(false)}
 
-                width={300}
-                height={200}
+                width={300} height={200}
                 // modalOnClick={() => setShow(false)}
 
                 show={show}

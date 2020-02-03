@@ -12,11 +12,9 @@ const ModalMessageContainer: React.FC = () => {
             </div>
 
             <ModalMessage
-                show={show}
-                close={() => setShow(false)}
+                show={show} close={() => setShow(false)}
 
-                width={100}
-                height={50}
+                width={100} height={50}
             >
                 <span>message</span>
                 <span>Modal</span>

@@ -8,37 +8,28 @@ export interface IStackModal {
         close: () => void;
     };
 
-    startTop?: number;
-    endTop?: number;
-    time?: number;
-    speed?: number;
+    startTop?: number; endTop?: number;
+    time?: number; speed?: number;
 
-    enableBackground?: boolean;
-    backgroundStyle?: CSSProperties;
+    enableBackground?: boolean; backgroundStyle?: CSSProperties;
     backgroundOnClick?: () => void;
 
-    width: number;
-    height: number;
-    modalStyle?: CSSProperties;
-    modalOnClick?: () => void;
+    width: number; height: number;
+    modalStyle?: CSSProperties; modalOnClick?: () => void;
     children?: ReactNode;
 }
 
 interface IModalMessageStackProps {
     setAddNewModal: (addNewModal: { f: (modal: IStackModal) => void }) => void;
 
-    defEndTop?: number;
-    defMiddle?: number;
-    defHeight?: number;
+    defEndTop?: number; defMiddle?: number; defHeight?: number;
 }
 
 const ModalMessageStack: React.FC<IModalMessageStackProps> = (
     {
         setAddNewModal,
 
-        defEndTop = 30,
-        defMiddle = 20,
-        defHeight = 50,
+        defEndTop = 30, defMiddle = 20, defHeight = 50,
     }
 ) => {
     const [modals, setModals] = useState<IStackModal[]>([]);
@@ -68,12 +59,7 @@ const ModalMessageStack: React.FC<IModalMessageStackProps> = (
                     m.showClose.close();
                 };
                 return (
-                    <ModalMessage
-                        key={m.id}
-                        {...m}
-                        show={show}
-                        close={close}
-                    >
+                    <ModalMessage key={m.id} {...m} show={show} close={close}>
                         {m.children ? m.children : 'message'}
                     </ModalMessage>
                 )

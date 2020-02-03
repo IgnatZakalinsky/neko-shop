@@ -17,19 +17,15 @@ const ModalInputContainer: React.FC = () => {
             </div>
 
             <ModalInput
-                show={show}
-                close={() => setShow(false)}
+                show={show} close={() => setShow(false)}
 
-                answer={answer}
-                setAnswer={setAnswer}
+                answer={answer} setAnswer={setAnswer}
 
                 inputData={[[value1, setValue1], [value2, setValue2]]}
 
-                enableBackground={true}
-                backgroundOnClick={() => setShow(false)}
+                enableBackground={true} backgroundOnClick={() => setShow(false)}
 
-                width={300}
-                height={200}
+                width={300} height={200}
             />
         </>
     );

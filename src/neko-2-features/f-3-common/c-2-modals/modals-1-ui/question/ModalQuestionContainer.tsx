@@ -25,14 +25,11 @@ const ModalQuestionContainer: React.FC = () => {
             <ModalQuestion
                 show={show}
 
-                setTrue={setTrue}
-                setFalse={setFalse}
+                setTrue={setTrue} setFalse={setFalse}
 
-                enableBackground={true}
-                backgroundOnClick={() => setShow(false)}
+                enableBackground={true} backgroundOnClick={() => setShow(false)}
 
-                width={300}
-                height={200}
+                width={300} height={200}
             />
         </>
     );

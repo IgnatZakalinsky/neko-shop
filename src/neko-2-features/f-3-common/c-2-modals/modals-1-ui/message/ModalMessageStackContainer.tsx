@@ -11,8 +11,7 @@ const successModal: IStackModal = {
     },
     endTop: 30,
 
-    width: 100,
-    height: 50,
+    width: 100, height: 50,
     children: 'success',
 };
 const errorModal: IStackModal = {
@@ -24,8 +23,7 @@ const errorModal: IStackModal = {
     },
     endTop: 30,
 
-    width: 100,
-    height: 50,
+    width: 100, height: 50,
     children: 'error',
     modalStyle: {background: 'red'},
 };

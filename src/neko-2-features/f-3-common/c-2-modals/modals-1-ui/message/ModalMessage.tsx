@@ -2,43 +2,30 @@ import React, {CSSProperties, useEffect, useState} from 'react';
 import Modal from "../Modal";
 
 interface IModalMessage {
-    show: boolean;
-    close: () => void;
+    show: boolean; close: () => void;
 
-    startTop?: number;
-    endTop?: number;
-    time?: number;
-    speed?: number;
+    startTop?: number; endTop?: number;
+    time?: number; speed?: number;
 
-    enableBackground?: boolean;
-    backgroundStyle?: CSSProperties;
+    enableBackground?: boolean; backgroundStyle?: CSSProperties;
     backgroundOnClick?: () => void;
 
-    width: number;
-    height: number;
-    modalStyle?: CSSProperties;
-    modalOnClick?: () => void;
+    width: number; height: number;
+    modalStyle?: CSSProperties; modalOnClick?: () => void;
 }
 
 const ModalMessage: React.FC<IModalMessage> = (
     {
-        startTop = -50,
-        endTop = 30,
-        time = 1500,
-        speed = 10,
+        startTop = -50, endTop = 30,
+        time = 1500, speed = 10,
 
-        enableBackground = false,
-        backgroundStyle,
+        enableBackground = false, backgroundStyle,
         backgroundOnClick = () => {},
 
-        width,
-        height,
-        modalStyle,
-        modalOnClick = () => {},
+        width, height,
+        modalStyle, modalOnClick = () => {},
 
-        show,
-        close,
-        children,
+        show, close, children,
     }
 ) => {
     const [top, setTop] = useState(startTop);
@@ -87,12 +74,10 @@ const ModalMessage: React.FC<IModalMessage> = (
     console.log('render ModalMessage');
     return (
         <Modal
-            enableBackground={enableBackground}
-            backgroundOnClick={backgroundOnClick}
+            enableBackground={enableBackground} backgroundOnClick={backgroundOnClick}
             backgroundStyle={backgroundStyle}
 
-            width={width}
-            height={height}
+            width={width} height={height}
             modalOnClick={modalOnClick}
             modalStyle={{
                 ...modalStyle,

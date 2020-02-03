@@ -36,13 +36,8 @@ const ModalUp: React.FC<IModalUp> = ({speed = 10}) => {
             <Modal
                 enableBackground={false}
 
-                width={70}
-                height={50}
-                modalOnClick={scroll}
-                modalStyle={{
-                    top: '80vh',
-                    left: '20px'
-                }}
+                width={70} height={50}
+                modalStyle={{top: '80vh', left: '20px'}} modalOnClick={scroll}
 
                 show={show}
             >
