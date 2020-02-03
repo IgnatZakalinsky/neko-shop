@@ -23,7 +23,11 @@ export interface ITableState {
     shop: {
         items: IShopTable[];
         settings: IShopSettings;
-    }
+    };
+    shopBasket: {
+        items: IShopTable[];
+        settings: IShopSettings;
+    };
 
 }
 
@@ -31,19 +35,7 @@ export type ITables = 'shop';
 
 export const tableInitialState: ITableState = {
     shop: {
-        items: [
-            // {
-            //     id: '0,234535325',
-            //     productName: 'Tesla Cybertruck',
-            //     price: 40000,
-            // },
-            // {
-            //     id: '0,234535326',
-            //     productName: 'Tesla X',
-            //     price: 35000,
-            // },
-
-        ],
+        items: [],
         settings: {
             minPrice: 1000,
             maxPrice: 9000,
@@ -58,5 +50,23 @@ export const tableInitialState: ITableState = {
             page: 1,
             pageCount: 10,
         }
-    }
+    },
+    shopBasket: {
+        items: [],
+        settings: {
+            minPrice: 1000,
+            maxPrice: 9000,
+            min: 1000,
+            max: 9000,
+
+            searchName: '',
+
+            sortProducts: '',
+
+            productTotalCount: 7,
+            page: 1,
+            pageCount: 10,
+        }
+    },
+
 };

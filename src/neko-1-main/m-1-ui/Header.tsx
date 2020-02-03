@@ -4,7 +4,7 @@ import {
     SIGN_IN_PATH, REGISTER_PATH, FORGOT_PATH,
     NEKO_PATH,
     TEST_MODALS_PATH, TEST_TIME_PATH, TEST_COLOR_PATH,
-    SHOP_TABLE_PATH,
+    SHOP_TABLE_PATH, SHOP_BASKET_PATH
 } from './Routes';
 import {FlexAlignCenterSpaceAroundWrap} from "../../neko-3-styles/flex-containers";
 
@@ -26,6 +26,7 @@ const Header: React.FC = () => {
             {show && <NavLink to={TEST_COLOR_PATH}>color</NavLink>}
 
             {show && <NavLink to={SHOP_TABLE_PATH}>shopTable</NavLink>}
+            {show && <NavLink to={SHOP_BASKET_PATH}>shopBasket</NavLink>}
         </div>
     );
 };

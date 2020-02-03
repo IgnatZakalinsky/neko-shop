@@ -3,6 +3,7 @@ import {Range, getTrackBackground} from 'react-range';
 import {useDispatch, useSelector} from "react-redux";
 import {setMinMax} from "../t-1-table/t-2-bll/b-2-redux/tableActions";
 import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
+import {FlexCenterCenter} from "../../../../neko-3-styles/flex-containers";
 
 const PriceRange: React.FC = () => {
     const {shop} = useSelector((store: IAppStore) => store.tables);
@@ -67,9 +68,7 @@ const PriceRange: React.FC = () => {
                         width: '12px',
                         borderRadius: '1px',
                         backgroundColor: '#FFF',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        ...FlexCenterCenter,
                         boxShadow: '0px 2px 6px #AAA',
                     }}
                 >
@@ -89,13 +88,7 @@ const PriceRange: React.FC = () => {
                         {values[index].toFixed(0)}
                         {/*// 10.12345 => 10; (1) => 10.1; (2) > 10.12; ...*/}
                     </div>
-                    <div
-                        style={{
-                            height: '16px',
-                            width: '5px',
-                            backgroundColor: isDragged ? '#548BF4' : '#CCC'
-                        }}
-                    />
+                    <div style={{height: '16px', width: '5px', backgroundColor: isDragged ? '#548BF4' : '#CCC'}}/>
                 </div>
             )}
         />

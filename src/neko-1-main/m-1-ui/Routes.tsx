@@ -8,6 +8,7 @@ import ModalsPage from "../../neko-2-features/f-3-common/c-2-modals/modals-1-ui/
 import TimePage from "../../neko-2-features/f-3-common/c-3-time/t-1-ui/TimePage";
 import ColorPage from '../../neko-2-features/f-3-common/c-4-color/c-1-ui/ColorPage';
 import TablePage from "../../neko-2-features/f-5-shop/s-1-table-page/tp-1-ui/TablePage";
+import BasketPage from "../../neko-2-features/f-5-shop/s-2-basket-page/bp-1-ui/BasketPage";
 
 // all project paths
 export const SIGN_IN_PATH = '/sign-in';
@@ -21,6 +22,7 @@ export const TEST_TIME_PATH = '/test-time';
 export const TEST_COLOR_PATH = '/test-color';
 
 export const SHOP_TABLE_PATH = '/shop-table';
+export const SHOP_BASKET_PATH = '/shop-basket';
 
 const Routes: React.FC = () => {
     return (
@@ -38,6 +40,7 @@ const Routes: React.FC = () => {
             <Route path={TEST_COLOR_PATH} render={() => <ColorPage/>}/>
 
             <Route path={SHOP_TABLE_PATH} render={() => <TablePage/>}/>
+            <Route path={SHOP_BASKET_PATH} render={() => <BasketPage/>}/>
         </>
     );
 };
