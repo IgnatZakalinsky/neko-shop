@@ -9,7 +9,6 @@ import {IAppStore} from "../../../../neko-1-main/m-2-bll/store";
 import TableContainer from "../../../f-3-common/c-5-table/t-1-table/t-1-ui/TableContainer";
 import {IShopTable} from "../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableInitialState";
 import { addItem } from '../../../f-3-common/c-5-table/t-1-table/t-2-bll/b-2-redux/tableActions';
-import {FlexColumnCenterCenter} from "../../../../neko-3-styles/flex-containers";
 
 const ShopTableContainer: React.FC = () => {
     const {shop} = useSelector((store: IAppStore) => store.tables);
@@ -25,16 +24,6 @@ const ShopTableContainer: React.FC = () => {
     useEffect(() => {
         dispatch(getProducts())
     }, []);
-
-    // // redirect logic
-    // if (redirect) {
-    //     return <Redirect to={SIGN_IN_PATH}/>;
-    // }
-    // if (!show) return (
-    //     <div style={{height: '80vh', ...FlexColumnCenterCenter, color: 'orange'}}>
-    //         Loading...
-    //     </div>
-    // );
 
     return <TableContainer table={'shop'} model={model} data={shop.items}/>;
 };
