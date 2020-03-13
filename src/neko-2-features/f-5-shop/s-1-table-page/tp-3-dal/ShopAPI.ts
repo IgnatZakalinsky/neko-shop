@@ -32,7 +32,7 @@ export const ShopAPI = {
         return response.data;
     },
     addProduct: async (productName: string, price: number) => {
-        const response = await instance.post('/shop', {product: {productName, price}});
+        const response = await instance.post('/shop', {product: {productName, price, productType: 'car'}});
         return response.data;
     },
     updateProduct: async (productName: string, price: number, id: string) => {

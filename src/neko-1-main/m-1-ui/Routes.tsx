@@ -9,6 +9,7 @@ import TimePage from "../../neko-2-features/f-3-common/c-3-time/t-1-ui/TimePage"
 import ColorPage from '../../neko-2-features/f-3-common/c-4-color/c-1-ui/ColorPage';
 import TablePage from "../../neko-2-features/f-5-shop/s-1-table-page/tp-1-ui/TablePage";
 import BasketPage from "../../neko-2-features/f-5-shop/s-2-basket-page/bp-1-ui/BasketPage";
+import FileInputPage from "../../neko-2-features/f-3-common/c-6-file/f-1-input/files-1-ui/FileInputPage";
 
 // all project paths
 export const SIGN_IN_PATH = '/sign-in';
@@ -23,6 +24,8 @@ export const TEST_COLOR_PATH = '/test-color';
 
 export const SHOP_TABLE_PATH = '/shop-table';
 export const SHOP_BASKET_PATH = '/shop-basket';
+
+export const FILE_PATH = '/file-test';
 
 const Routes: React.FC = () => {
     return (
@@ -41,6 +44,8 @@ const Routes: React.FC = () => {
 
             <Route path={SHOP_TABLE_PATH} render={() => <TablePage/>}/>
             <Route path={SHOP_BASKET_PATH} render={() => <BasketPage/>}/>
+
+            <Route path={FILE_PATH} render={() => <FileInputPage/>}/>
         </>
     );
 };
