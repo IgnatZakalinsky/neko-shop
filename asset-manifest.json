@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/neko-shop/static/css/main.2fb0856e.chunk.css",
+    "main.js": "/neko-shop/static/js/main.3185ea2d.chunk.js",
+    "main.js.map": "/neko-shop/static/js/main.3185ea2d.chunk.js.map",
+    "runtime-main.js": "/neko-shop/static/js/runtime-main.6e844748.js",
+    "runtime-main.js.map": "/neko-shop/static/js/runtime-main.6e844748.js.map",
+    "static/css/2.826c19ff.chunk.css": "/neko-shop/static/css/2.826c19ff.chunk.css",
+    "static/js/2.b9bf2c01.chunk.js": "/neko-shop/static/js/2.b9bf2c01.chunk.js",
+    "static/js/2.b9bf2c01.chunk.js.map": "/neko-shop/static/js/2.b9bf2c01.chunk.js.map",
+    "index.html": "/neko-shop/index.html",
+    "precache-manifest.26bf758c5a9d37cf383e466b696e4879.js": "/neko-shop/precache-manifest.26bf758c5a9d37cf383e466b696e4879.js",
+    "service-worker.js": "/neko-shop/service-worker.js",
+    "static/css/2.826c19ff.chunk.css.map": "/neko-shop/static/css/2.826c19ff.chunk.css.map",
+    "static/css/main.2fb0856e.chunk.css.map": "/neko-shop/static/css/main.2fb0856e.chunk.css.map",
+    "static/js/2.b9bf2c01.chunk.js.LICENSE": "/neko-shop/static/js/2.b9bf2c01.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6e844748.js",
+    "static/css/2.826c19ff.chunk.css",
+    "static/js/2.b9bf2c01.chunk.js",
+    "static/css/main.2fb0856e.chunk.css",
+    "static/js/main.3185ea2d.chunk.js"
+  ]
+}
