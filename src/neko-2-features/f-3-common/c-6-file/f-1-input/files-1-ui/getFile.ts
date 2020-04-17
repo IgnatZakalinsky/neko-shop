@@ -2,10 +2,13 @@ import axios from 'axios';
 
 export const getFile = (url: string, fileName: string) => {
     // запросить файл
-    axios.get(url).then(({data}) => {
+    axios.get(url, {responseType: 'blob'}) // !!! responseType: 'blob'
+        .then(({data}) => {
+        const blob = new Blob([data], {type : 'image/jpeg'});
+        console.log(blob)
 
         // создать ссылку на файл
-        const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+        const downloadUrl = window.URL.createObjectURL(blob);
 
         // создать тег "ссылка" на наш файл
         const link = document.createElement('a');

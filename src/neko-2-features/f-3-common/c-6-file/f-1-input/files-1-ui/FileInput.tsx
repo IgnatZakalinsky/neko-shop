@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
-import {instance} from "../../../../../base-url";
+import {baseURL, instance} from "../../../../../base-url";
 import Video from "./Video";
 import {FlexColumnCenterCenter} from "../../../../../neko-3-styles/flex-containers";
-import {writeFile} from "./getFile";
+import {getFile, writeFile} from "./getFile";
 
 interface IFileInputProps {
 
@@ -44,12 +44,7 @@ const FileInput: React.FC<IFileInputProps> = () => {
     };
 
     const send = () => {
-        setTimeout(
-            () => {
-                const response = instance.post('/file', fileData);
-            },
-            2000
-        );
+        const response = instance.post('/file', fileData);
     };
 
     const returnFileSize = (n: number) => {
@@ -95,8 +90,12 @@ const FileInput: React.FC<IFileInputProps> = () => {
 
             <textarea value={text} onChange={e => setText(e.currentTarget.value)}/>
             <pre>{file64}</pre>
-            <button onClick={() => writeFile('Text.txt', text + `\r\n` + file64)}>save</button>
-            <button onClick={send}>send</button>
+            <div>
+                <button onClick={() => writeFile('Text.txt', text + `\r\n` + file64)}>save</button>
+                <button onClick={send}>send</button>
+                <button onClick={() => getFile(baseURL + 'file', 'newFile.jpg')}>get</button>
+            </div>
+
             <hr style={{width: '100%'}}/>
 
             <Video fileURL={fileURL}/>
