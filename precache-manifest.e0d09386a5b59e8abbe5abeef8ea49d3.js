@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f4861e012154f08fab29c243431a950f",
+    "revision": "8b4544abbb15712d593aaa6e1a1df80b",
     "url": "/neko-shop/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/neko-shop/static/css/2.826c19ff.chunk.css"
   },
   {
-    "revision": "44b978d3738bdd524094",
+    "revision": "14ce1ad95e04edaf2189",
     "url": "/neko-shop/static/css/main.2fb0856e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/neko-shop/static/js/2.45aa1ec0.chunk.js.LICENSE"
   },
   {
-    "revision": "44b978d3738bdd524094",
-    "url": "/neko-shop/static/js/main.e30637ec.chunk.js"
+    "revision": "14ce1ad95e04edaf2189",
+    "url": "/neko-shop/static/js/main.fb11c7bf.chunk.js"
   },
   {
     "revision": "36881853dc79dc988d6c",
