@@ -4,12 +4,11 @@ interface IFileInputProps {
     fileURL: string;
 }
 
-const Video: React.FC<IFileInputProps> = (
-    {fileURL}
-) => {
+const Video: React.FC<IFileInputProps> = ({fileURL}) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const [duration, setDuration] = useState();
+    const [controls, setControls] = useState(false);
     const [currentTime, setCurrentTime] = useState();
 
     useEffect(() => {
@@ -83,10 +82,14 @@ const Video: React.FC<IFileInputProps> = (
             }}
         >
             Video
+            <label>
+                controls
+                <input type={'checkbox'} checked={controls} onChange={e => setControls(e.currentTarget.checked)}/>
+            </label>
             <video
                 src={fileURL}
                 width={'300px'}
-                // controls={true}
+                controls={controls}
                 ref={videoRef}
             />
             <div>
@@ -102,8 +105,9 @@ const Video: React.FC<IFileInputProps> = (
                 <button onClick={playbackRateDown}>playbackRateDown</button>
                 <button onClick={width100}>width100</button>
             </div>
-            duration: {duration}
-            currentTime: {currentTime}
+            duration: {duration} currentTime: {currentTime}
+            <hr style={{width: '100%'}}/>
+
             <iframe
                 width="560"
                 height="315"

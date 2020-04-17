@@ -1,20 +1,19 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
-import {baseURL, instance} from "../../../../../base-url";
-import axios from 'axios';
+import {instance} from "../../../../../base-url";
 import Video from "./Video";
 import {FlexColumnCenterCenter} from "../../../../../neko-3-styles/flex-containers";
+import {writeFile} from "./getFile";
 
 interface IFileInputProps {
 
 }
 
-const FileInput: React.FC<IFileInputProps> = (
-    {}
-) => {
+const FileInput: React.FC<IFileInputProps> = () => {
     const inRef = useRef<HTMLInputElement>(null);
-    const videoRef = useRef<HTMLVideoElement>(null);
 
-
+    const [code, setCode] = useState(false);
+    const [base64, setBase64] = useState(true); // base64 - true, text - false
+    const [text, setText] = useState('');
     const [file, setFile] = useState();
     const [fileURL, setFileURL] = useState();
     const [file64, setFile64] = useState();
@@ -23,36 +22,43 @@ const FileInput: React.FC<IFileInputProps> = (
     const upload = (e: ChangeEvent<HTMLInputElement>) => {
         // e.preventDefault();
         const reader = new FileReader();
-        const formData = new FormData();
+        const formData = new FormData(); // for send to back
 
         const newFile = e.target.files && e.target.files[0];
-        reader.onloadend = () => {
+
+        if (newFile) {
             setFile(newFile);
             setFileURL(window.URL.createObjectURL(newFile));
-            newFile && formData.append('myFile', newFile, newFile.name);
+            formData.append('myFile', newFile, newFile.name);
+            setFileData(formData);
+        }
 
-            // const config = {
-            //     headers: { 'content-type': 'multipart/form-data' }
-            // }
-            setTimeout(() =>
-                // axios.post('http://localhost:7542' + '/file', {file64: {f: reader.result}}), 2000);
-                axios.post('http://localhost:7542' + '/file', formData), 2000);
-            // instance.post('/file', formData), 2000);
+        if (code) { // reader
+            reader.onloadend = () => {
+                setFile64(reader.result);
+            };
 
-            // console.log(newFile, formData.get('myFile'), reader.result);
-            // setFile64(reader.result);
-            setFileData(formData.get('myFile'))
-        };
-        newFile && reader.readAsDataURL(newFile);
+            if (base64) newFile && reader.readAsDataURL(newFile);
+            else newFile && reader.readAsText(newFile);
+        }
     };
 
-    const returnFileSize = (number: number) => {
-        if (number < 1024) {
-            return number + 'bytes';
-        } else if (number > 1024 && number < 1048576) {
-            return (number / 1024).toFixed(2) + 'KB';
-        } else if (number > 1048576) {
-            return (number / 1048576).toFixed(2) + 'MB';
+    const send = () => {
+        setTimeout(
+            () => {
+                const response = instance.post('/file', fileData);
+            },
+            2000
+        );
+    };
+
+    const returnFileSize = (n: number) => {
+        if (n < 1024) {
+            return n + 'bytes';
+        } else if (n > 1024 && n < 1048576) {
+            return (n / 1024).toFixed(2) + 'KB';
+        } else if (n > 1048576) {
+            return (n / 1048576).toFixed(2) + 'MB';
         }
     };
 
@@ -60,25 +66,19 @@ const FileInput: React.FC<IFileInputProps> = (
         <div style={FlexColumnCenterCenter}>
             FileInput
 
-            {/*<input type="file" accept=".jpg, .jpeg, .png" multiple>*/}
+            <input type="file" accept=".jpg, .jpeg, .png" multiple/>
+            <hr style={{width: '100%'}}/>
 
-            {/*<label*/}
-            {/*    htmlFor={'infi'}*/}
-            {/*    onClick={e => {if (e.target !== e.currentTarget) e.currentTarget.click()}}*/}
-            {/*    style={{position: 'relative'}}*/}
-            {/*>*/}
-            {/*    <button>add</button>*/}
-            {/*    <input*/}
-            {/*        id={'infi'}*/}
-            {/*        type={'file'}*/}
-            {/*        style={{display: 'none'}}*/}
-            {/*        onChange={e => upload(e)}*/}
-            {/*    />*/}
-            {/*</label>*/}
-
+            <label>
+                reader
+                <input type={'checkbox'} checked={code} onChange={e => setCode(e.currentTarget.checked)}/>
+            </label>
+            <label>
+                base64
+                <input type={'checkbox'} checked={base64} onChange={e => setBase64(e.currentTarget.checked)}/>
+            </label>
 
             <img src={fileURL} alt={'file'} width={'300px'}/>
-
             <div>name: {file && file.name}</div>
             <div>lastModified: {file && file.lastModified}</div>
             <div>size: {file && returnFileSize(file.size)}</div>
@@ -91,7 +91,15 @@ const FileInput: React.FC<IFileInputProps> = (
                 onChange={e => upload(e)}
             />
             <button onClick={() => inRef && inRef.current && inRef.current.click()}>add</button>
-            {/*<Video fileURL={fileURL}/>*/}
+            <hr style={{width: '100%'}}/>
+
+            <textarea value={text} onChange={e => setText(e.currentTarget.value)}/>
+            <pre>{file64}</pre>
+            <button onClick={() => writeFile('Text.txt', text + `\r\n` + file64)}>save</button>
+            <button onClick={send}>send</button>
+            <hr style={{width: '100%'}}/>
+
+            <Video fileURL={fileURL}/>
         </div>
     );
 };
