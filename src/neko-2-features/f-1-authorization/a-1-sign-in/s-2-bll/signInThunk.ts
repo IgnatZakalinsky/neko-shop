@@ -30,7 +30,7 @@ export const signIn =
                     signInError(dispatch, data.error);
 
                 } else {
-                    setCookie('token', data.token, Math.floor(data.tokenDeathTime / 1000) - 180);
+                    setCookie('token', data.token, Math.floor(data.tokenDeathTime / (1000 * 60 * 60)));
 
                     dispatch(nekoSetName(data.name));
                     signInSuccess(dispatch, true);

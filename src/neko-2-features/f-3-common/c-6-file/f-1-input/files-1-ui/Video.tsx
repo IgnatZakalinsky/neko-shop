@@ -45,12 +45,12 @@ const Video: React.FC<IFileInputProps> = ({fileURL}) => {
     };
     const currentTimeUp = () => {
         if (videoRef && videoRef.current
-            && videoRef.current.currentTime < videoRef.current.duration - 0.1) videoRef.current.currentTime += 0.1;
+            && videoRef.current.currentTime < videoRef.current.duration - 0.3) videoRef.current.currentTime += 0.3;
         else videoRef && videoRef.current && (videoRef.current.currentTime = videoRef.current.duration);
     };
     const currentTimeDown = () => {
         if (videoRef && videoRef.current
-            && videoRef.current.currentTime > 0.1) videoRef.current.currentTime -= 0.1;
+            && videoRef.current.currentTime > 0.3) videoRef.current.currentTime -= 0.3;
         else videoRef && videoRef.current && (videoRef.current.currentTime = 0);
     };
     const playbackRateUp = () => {
@@ -59,7 +59,6 @@ const Video: React.FC<IFileInputProps> = ({fileURL}) => {
         else videoRef && videoRef.current && (videoRef.current.playbackRate = 100);
     };
     const playbackRateDown = () => {
-        console.log(videoRef && videoRef.current && videoRef.current.playbackRate)
         if (videoRef && videoRef.current
             && videoRef.current.playbackRate > 0.2) videoRef.current.playbackRate -= 0.1;
         else videoRef && videoRef.current && (videoRef.current.playbackRate = 0.2);

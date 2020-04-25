@@ -31,15 +31,15 @@ const FileInput: React.FC<IFileInputProps> = () => {
             setFileURL(window.URL.createObjectURL(newFile));
             formData.append('myFile', newFile, newFile.name);
             setFileData(formData);
-        }
 
-        if (code) { // reader
-            reader.onloadend = () => {
-                setFile64(reader.result);
+            if (code) { // reader
+                reader.onloadend = () => {
+                    setFile64(reader.result);
             };
 
-            if (base64) newFile && reader.readAsDataURL(newFile);
-            else newFile && reader.readAsText(newFile);
+                if (base64) reader.readAsDataURL(newFile);
+                else reader.readAsText(newFile);
+            }
         }
     };
 
@@ -73,7 +73,7 @@ const FileInput: React.FC<IFileInputProps> = () => {
                 <input type={'checkbox'} checked={base64} onChange={e => setBase64(e.currentTarget.checked)}/>
             </label>
 
-            <img src={fileURL} alt={'file'} width={'300px'}/>
+            <img src={file64} alt={'file'} width={'300px'}/>
             <div>name: {file && file.name}</div>
             <div>lastModified: {file && file.lastModified}</div>
             <div>size: {file && returnFileSize(file.size)}</div>
@@ -83,7 +83,7 @@ const FileInput: React.FC<IFileInputProps> = () => {
                 ref={inRef}
                 type={'file'}
                 style={{display: 'none'}}
-                onChange={e => upload(e)}
+                onChange={upload}
             />
             <button onClick={() => inRef && inRef.current && inRef.current.click()}>add</button>
             <hr style={{width: '100%'}}/>
