@@ -1,8 +1,10 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
-import {baseURL, instance} from "../../../../../base-url";
 import Video from "./Video";
 import {FlexColumnCenterCenter} from "../../../../../neko-3-styles/flex-containers";
 import {getFile, writeFile} from "./getFile";
+import axios from "axios";
+
+export const fileBackURL = 'https://neko-back.vercel.app/';
 
 interface IFileInputProps {
 
@@ -44,7 +46,7 @@ const FileInput: React.FC<IFileInputProps> = () => {
     };
 
     const send = () => {
-        const response = instance.post('/file', fileData);
+        const response = axios.post(fileBackURL + 'file', fileData);
     };
 
     const returnFileSize = (n: number) => {
@@ -93,7 +95,7 @@ const FileInput: React.FC<IFileInputProps> = () => {
             <div>
                 <button onClick={() => writeFile('Text.txt', text + `\r\n` + file64)}>save</button>
                 <button onClick={send}>send</button>
-                <button onClick={() => getFile(baseURL + 'file', 'newFile.jpg')}>get</button>
+                <button onClick={() => getFile(fileBackURL + 'file', 'newFile.jpg')}>get</button>
             </div>
 
             <hr style={{width: '100%'}}/>
