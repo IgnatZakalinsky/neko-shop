@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/neko-shop/precache-manifest.9c5bcd79db5bfee9f402de7f16a530d2.js"
+  "/neko-shop/precache-manifest.d5d55a61b8b96e3f5276f3190793f610.js"
 );
 
 self.addEventListener('message', (event) => {
